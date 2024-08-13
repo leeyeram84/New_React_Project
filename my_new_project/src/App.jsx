@@ -81,13 +81,27 @@ function App() {
             <div>
                 {addCountry.map(function (country) {
                     return (
-                        <div className="countryBox">
-                            <div className="country">
-                                국가명 : {country.country}
-                            </div>
-                            <div className="gold">금 : {country.gold}</div>
-                            <div className="sliver">은 : {country.silver}</div>
-                            <div className="bronze">동 : {country.bronze}</div>
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>국가명</th>
+                                        <th>금메달</th>
+                                        <th>은메달</th>
+                                        <th>동메달</th>
+                                        <th>액션</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <td>{country.country}</td>
+                                    <td>{country.gold}</td>
+                                    <td>{country.silver}</td>
+                                    <td>{country.bronze}</td>
+                                    <td>
+                                        <button>삭제</button>
+                                    </td>
+                                </tbody>
+                            </table>
                         </div>
                     );
                 })}

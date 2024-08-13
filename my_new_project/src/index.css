@@ -45,25 +45,42 @@ td button {
     cursor: pointer;
 }
 
-.countryBox {
+.countrymedalBox {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: rgb(194, 215, 255);
-    padding: auto;
+    padding: 10px;
+    border-radius: 10px;
     border: none;
+    background-color: rgb(194, 215, 255);
 }
 
-.country {
-    margin: 10px;
+table {
+    width: 100%;
+    margin-top: 10px;
+    background-color: white;
 }
 
-.gold {
-    margin: 10px;
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
 }
-.sliver {
-    margin: 10px;
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
 }
-.bronze {
-    margin: 10px;
+
+th {
+    background-color: #243d61;
+    color: white;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid white;
 }
