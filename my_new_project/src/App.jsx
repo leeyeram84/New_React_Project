@@ -8,7 +8,7 @@ function App() {
     const [addCountry, setAddCountry] = useState([
         {
             id: "test",
-            country: "",
+            country: "test",
             gold: 0,
             silver: 0,
             bronze: 0,
