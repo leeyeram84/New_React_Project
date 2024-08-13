@@ -25,59 +25,72 @@ function App() {
             bronze: bronzeMedal,
         };
 
+        // 인풋필드 초기화
+        setCountry("");
+        setGoldmedal(0);
+        setSilvermedal(0);
+        setBronzemedal(0);
+
         setAddCountry([...addCountry, newCountry]);
     };
 
     return (
         <>
-            <h1>2024 파리 올림픽</h1>
-            <div className="box">
-                <div className="inputFiled">
-                    <label>국가명</label>
-                    <input
-                        type="text"
-                        value={country}
-                        onChange={(e) => {
-                            setCountry(e.target.value);
-                        }}
-                        placeholder="국가 입력"
-                    />
+            <form action="" onSubmit={addCountryHandler}>
+                <h1>2024 파리 올림픽</h1>
+                <div className="box">
+                    <div className="inputFiled">
+                        <label>국가명</label>
+                        <input
+                            type="text"
+                            value={country}
+                            onChange={(e) => {
+                                setCountry(e.target.value);
+                            }}
+                            placeholder="국가 입력"
+                            required // 유효성검사 : form에서만 작동 , 공란만 가능
+                        />
+                    </div>
+                    <div className="inputFiled">
+                        <label>금메달</label>
+                        <input
+                            type="number"
+                            value={goldMedal}
+                            onChange={(e) => {
+                                setGoldmedal(e.target.value);
+                            }}
+                            placeholder="0"
+                            min="0" // 스피너 최솟값 설정
+                        />
+                    </div>
+                    <div className="inputFiled">
+                        <label>은메달</label>
+                        <input
+                            type="number"
+                            value={silverMedal}
+                            onChange={(e) => {
+                                setSilvermedal(e.target.value);
+                            }}
+                            placeholder="0"
+                            min="0"
+                        />
+                    </div>
+                    <div className="inputFiled">
+                        <label>동메달</label>
+                        <input
+                            type="number"
+                            value={bronzeMedal}
+                            onChange={(e) => {
+                                setBronzemedal(e.target.value);
+                            }}
+                            placeholder="0"
+                            min="0"
+                        />
+                    </div>
+
+                    <button type="submit">국가 추가</button>
                 </div>
-                <div className="inputFiled">
-                    <label>금메달</label>
-                    <input
-                        type="number"
-                        value={goldMedal}
-                        onChange={(e) => {
-                            setGoldmedal(e.target.value);
-                        }}
-                        placeholder="0"
-                    />
-                </div>
-                <div className="inputFiled">
-                    <label>은메달</label>
-                    <input
-                        type="number"
-                        value={silverMedal}
-                        onChange={(e) => {
-                            setSilvermedal(e.target.value);
-                        }}
-                        placeholder="0"
-                    />
-                </div>
-                <div className="inputFiled">
-                    <label>동메달</label>
-                    <input
-                        type="number"
-                        value={bronzeMedal}
-                        onChange={(e) => {
-                            setBronzemedal(e.target.value);
-                        }}
-                        placeholder="0"
-                    />
-                </div>
-                <button onClick={addCountryHandler}>국가 추가</button>
-            </div>
+            </form>
             <div>
                 {addCountry.map(function (country) {
                     return (
