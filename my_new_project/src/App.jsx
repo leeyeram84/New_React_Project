@@ -34,6 +34,9 @@ function App() {
         setAddCountry([...addCountry, newCountry]);
     };
 
+    // 삭제
+    const deleteCountry = (id) => {};
+
     return (
         <>
             <form action="" onSubmit={addCountryHandler}>
@@ -106,12 +109,20 @@ function App() {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <input
+                                        type="hidden"
+                                        value={country.id}
+                                    ></input>
                                     <td>{country.country}</td>
                                     <td>{country.gold}</td>
                                     <td>{country.silver}</td>
                                     <td>{country.bronze}</td>
                                     <td>
-                                        <button>삭제</button>
+                                        <button
+                                            onClick={deleteCountry(country.id)}
+                                        >
+                                            삭제
+                                        </button>
                                     </td>
                                 </tbody>
                             </table>
