@@ -1,11 +1,12 @@
 .box {
+    max-width: 1200px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
-    background-color: white;
-    box-shadow: 1 5px 5px black;
+    background-color: rgb(255, 255, 255);
 }
 
 h1 {
@@ -29,11 +30,21 @@ input {
 }
 
 button {
+    width: 100px;
+    height: 60px;
     padding: 10px;
     border-radius: 5px;
     border: none;
-    background-color: rgb(255, 213, 75);
+    background-color: #6921d4;
     cursor: pointer;
+    margin: 10px;
+    font-size: 17px;
+    color: rgb(255, 255, 255);
+}
+
+button:hover {
+    box-shadow: 1px 1px 5px rgb(130, 130, 130);
+    background-color: #8e45fd;
 }
 
 td button {
@@ -43,6 +54,10 @@ td button {
     border: none;
     background-color: rgb(163, 4, 4);
     cursor: pointer;
+}
+
+td button:hover {
+    background-color: rgb(198, 52, 52);
 }
 
 .countrymedalBox {

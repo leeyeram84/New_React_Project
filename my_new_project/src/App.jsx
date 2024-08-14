@@ -1,42 +1,94 @@
 import React, { useState } from "react";
 function App() {
     const [country, setCountry] = useState("");
-    const [goldMedal, setGoldmedal] = useState("0");
-    const [silverMedal, setSilvermedal] = useState("0");
-    const [bronzeMedal, setBronzemedal] = useState("0");
+    const [goldMedal, setGoldmedal] = useState(0);
+    const [silverMedal, setSilvermedal] = useState(0);
+    const [bronzeMedal, setBronzemedal] = useState(0);
 
-    const [addCountry, setAddCountry] = useState([
-        {
-            id: "test",
-            country: "test",
-            gold: 0,
-            silver: 0,
-            bronze: 0,
-        },
-    ]);
+    const [addCountry, setAddCountry] = useState([]);
+
+    // 중복 국가 검사 함수
+    const checkExistingCountry = () => {
+        return addCountry.find((countryData) => {
+            if (
+                countryData.name.toLocaleLowerCase() ===
+                country.toLocaleLowerCase()
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    };
 
     const addCountryHandler = (e) => {
         e.preventDefault();
-        const newCountry = {
-            id: new Date().getTime(),
-            country: country,
-            gold: goldMedal,
-            silver: silverMedal,
-            bronze: bronzeMedal,
-        };
+
+        if (checkExistingCountry()) {
+            alert("이미 등록된 국가입니다.");
+        } else {
+            // 데이터 객체로 추가
+            const newCountry = {
+                id: new Date().getTime(),
+                name: country,
+                gold: goldMedal,
+                silver: silverMedal,
+                bronze: bronzeMedal,
+            };
+
+            // 인풋필드 초기화
+            setCountry("");
+            setGoldmedal(0);
+            setSilvermedal(0);
+            setBronzemedal(0);
+
+            setAddCountry([...addCountry, newCountry]);
+        }
+    };
+
+    // 삭제
+    const deleteCountry = (countryName) => {
+        const deletCountries = addCountry.filter((element) => {
+            return countryName !== element.name;
+        });
+
+        setAddCountry(deletCountries);
+    };
+
+    //업데이트
+    const updateCountry = (e) => {
+        e.preventDefault();
+
+        // 새로 입력받은 데이터 저장 및 출력
+        if (checkExistingCountry()) {
+            setAddCountry(
+                addCountry.map((countryData) => {
+                    if (
+                        countryData.name.toLocaleLowerCase() ===
+                        country.toLocaleLowerCase()
+                    ) {
+                        return {
+                            id: new Date().getTime(),
+                            name: countryData.name,
+                            gold: goldMedal,
+                            silver: silverMedal,
+                            bronze: bronzeMedal,
+                        };
+                    } else {
+                        return countryData;
+                    }
+                })
+            );
+        } else {
+            alert("등록되지 않은 국가입니다.");
+        }
 
         // 인풋필드 초기화
         setCountry("");
         setGoldmedal(0);
         setSilvermedal(0);
         setBronzemedal(0);
-
-        setAddCountry([...addCountry, newCountry]);
     };
-
-    // 삭제
-    const deleteCountry = (id) => {};
-
     return (
         <>
             <form action="" onSubmit={addCountryHandler}>
@@ -92,6 +144,9 @@ function App() {
                     </div>
 
                     <button type="submit">국가 추가</button>
+                    <button type="button" onClick={updateCountry}>
+                        업데이트
+                    </button>
                 </div>
             </form>
             <div>
@@ -109,17 +164,15 @@ function App() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <input
-                                        type="hidden"
-                                        value={country.id}
-                                    ></input>
-                                    <td>{country.country}</td>
+                                    <td>{country.name}</td>
                                     <td>{country.gold}</td>
                                     <td>{country.silver}</td>
                                     <td>{country.bronze}</td>
                                     <td>
                                         <button
-                                            onClick={deleteCountry(country.id)}
+                                            onClick={() => {
+                                                deleteCountry(country.name);
+                                            }}
                                         >
                                             삭제
                                         </button>
